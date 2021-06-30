@@ -78,10 +78,9 @@ rebuild-notebooks:
         # do stuff
         - jupyter nbconvert --to html tutorials/*.ipynb
         # only push existing notebooks, not new ones
-        - cd ../
         - git clone https://user:${BLOG_UPDATE_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_ROOT_NAMESPACE}/labs-flexiblog.git
         - cd labs-flexiblog
-        - cp ../tutorials/tutorials/*.html site/static/notebooks
+        - cp ../tutorials/*.html site/static/notebooks
         - git add -u site/static/notebooks/
         - git commit -m "Updating all notebooks"
         - git push origin dev
