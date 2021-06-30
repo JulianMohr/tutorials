@@ -64,27 +64,26 @@ release-tag:
 # Push repo to github
 # push-github: - from template
 
-# Rebuild notebooks and push to giithub blog
+# Rebuild notebooks and push to github blog
 rebuild-notebooks:
     stage: release
     image: $GH_PUSH_IMAGE
-    before_script:
-        - apt-get update -qq && apt-get install -y -qq git python3-pip
-        - mkdir ~/.ssh/
-        - cp $LABS_BOT_GH_KEY ~/.ssh/id_rsa && chmod 600 ~/.ssh/id_rsa
-        - echo -e "Host github.com\n\tStrictHostKeyChecking no\n\tHostname ssh.github.com\n\tPort 443\n\n" > ~/.ssh/config
+    script:
+        # install prerequisites
+        - apt-get update && apt-get -y install git python3-pip
+        - pip3 install jupyterlab
+        # set git
         - git config --global user.email "epi2melabs@nanoporetech.com"
         - git config --global user.name "epi2melabs-bot"
-        - pip3 install jupyterlab
-    script:
+        # do stuff
+        - jupyter nbconvert --to html tutorials/*.ipynb
+        # only push existing notebooks, not new ones
         - cd ../
-        - jupyter nbconvert --to html tutorials/tutorials/*.ipynb
-        - git clone git@github.com:epi2me-labs/epi2me-labs.github.io.git
-        - cp tutorials/tutorials/*.html epi2me-labs.github.io/static/notebooks
-        - cd epi2me-labs.github.io
-        - git branch
-        - git add .
-        - git status
-        - echo `git commit -m "Rebuilt notebooks" && git push`
-    only:
-        - tags
+        - git clone https://user:${BLOG_UPDATE_TOKEN}@${CI_SERVER_HOST}/${CI_PROJECT_ROOT_NAMESPACE}/labs-flexiblog.git
+        - cd labs-flexiblog
+        - cp ../tutorials/tutorials/*.html site/static/notebooks
+        - git add -u site/static/notebooks/
+        - git commit -m "Updating all notebooks"
+        - git push origin dev
+    rules:
+        - if: '$CI_COMMIT_TAG =~ /^v[[:digit:]]+\.[[:digit:]]+\.[[:digit:]]+$/'
