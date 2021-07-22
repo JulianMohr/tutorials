@@ -3,6 +3,12 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog,
 and this project adheres to Semantic Versioning.
 
+## [v1.1.2]
+### Changed
+- Updated SV tutorial to use LRA and cuteSV in line with current best practice.
+### Fixed
+- SARS-CoV-2 tutorial correctly handles V1200 primer set.
+
 ## [v1.1.1]
 ### Changed
 - Additional user guidance in several notebooks.
