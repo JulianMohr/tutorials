@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 The format is based on Keep a Changelog,
 and this project adheres to Semantic Versioning.
 
+## [unreleased]
+### Fixed
+- Import error in mod. base tutorial.
+
 ## [v1.1.3]
 ### Changed
 - Updated modified base to use latest tools and methods.
