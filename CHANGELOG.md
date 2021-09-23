@@ -7,6 +7,7 @@ and this project adheres to Semantic Versioning.
 ### Fixed
 - Import error in mod. base tutorial.
 - Plots in medaka demonstration walkthrough.
+- VCF depth type-cast in amplicon variant calling tutorial.
 ### Changed
 - Demultiplexing removed from ARTIC tutorial.
 - ARTIC output files placed in correct output location.
