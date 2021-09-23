@@ -6,16 +6,25 @@ and this project adheres to Semantic Versioning.
 ## [unreleased]
 ### Fixed
 - Import error in mod. base tutorial.
+- Plots in medaka demonstration walkthrough.
+### Changed
+- Demultiplexing removed from ARTIC tutorial.
+- ARTIC output files placed in correct output location.
+### Added
+- Additional primer sets to ARTIC tutorial.
+
 
 ## [v1.1.3]
 ### Changed
 - Updated modified base to use latest tools and methods.
+
 
 ## [v1.1.2]
 ### Changed
 - Updated SV tutorial to use LRA and cuteSV in line with current best practice.
 ### Fixed
 - SARS-CoV-2 tutorial correctly handles V1200 primer set.
+
 
 ## [v1.1.1]
 ### Changed
